@@ -9,7 +9,7 @@ def get_costs(instances, hours, cpus):
     output = []
     for region, resources in resources_dict.iteritems():
         func_rec(output, [], resources, cpus, 0, len(resources))
-    # output.sort(key=lambda x: x['total_cost'])
+
     return convert_to_dollars(output, hours)
 
 def convert_to_dollars(output, hours):
