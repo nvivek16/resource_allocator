@@ -1,4 +1,14 @@
 class CpuBasedAllocator():
+
+    '''
+        1) Resources are grouped based on regions, since each region has different price per hour for its instances
+        2) Resources are sorted in ascending order based no of cpus before feeding it into the algorithm, as we need to choose instances that can have minium of x cpus
+        3) Alogrithm adds each resource mutliple times so that total cpus <= 0.
+        4) Each resource that is selected is pushed into a tmp storage and once the target is reached. It is added to the output list after calculating the price and total no of each resources
+        5) Selected resource combinations are sorted based on price in asc order
+        6) Each resource is then formatted as mentioned in the main documentation
+    '''
+
     def __init__(self, cpus, hours, resources):
         self.cpus = cpus
         self.hours = hours

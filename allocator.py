@@ -1,6 +1,11 @@
 import lookup
 import resource
 import allocator_factory
+'''
+	1) Create resource object for each instance. The resource object stores no of cpus it has, its price per hour and its region
+	2) Allocator factory chooses the correst request handler based on the given input params
+	3) Backtracking algorithm is used for allocating resources
+'''
 def get_costs(instances, hours, cpus, price):
     # create resources and group based on region
     resources_dict = create_resources(instances)

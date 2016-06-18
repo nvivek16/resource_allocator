@@ -1,4 +1,14 @@
 class PriceBasedAllocator():
+
+    '''
+        1) Resources are grouped based on regions, since each region has different price per hour for its instances
+        2) Alogrithm adds each resource mutliple times so that total price doesnot exceed the given cap.
+        3) Since the total price of each subset should not be more than given cap. Resources will be added even if it is less than the given cap
+        4) This algorithm make sures that two selected set doesnot have the same prefix by using path_added flag
+        5) Selected resource combinations are sorted based on no of cpus in desc order
+        6) Each resource is then formatted as mentioned in the main documentation
+    '''
+
     def __init__(self, price, hours, resources):
         self.hours = hours
         self.price = price / float(self.hours)

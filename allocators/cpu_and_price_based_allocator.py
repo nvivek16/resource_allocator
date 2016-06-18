@@ -1,4 +1,18 @@
 class CpuAndPriceBasedAllocator():
+
+    '''
+        1) Resources are grouped based on regions, since each region has different price per hour for its instances
+        2) Resources are sorted in ascending order of no of cpus before feeding it into the algorithm as we need to choose instances that can have minium of x cpus
+        3) Alogrithm adds each resource mutliple times so that total price doesnot exceed the given cap.
+        4) Since the total pirce of each subset should not be more than given cap. Resources will be added even if it is less than the given cap
+        5) This alorithm make sures that two selected set doesnot have the same prefix by using path_added flag
+        6) Resource subset will be added only in two conditions
+            - Total cpu sum is >= given_cap
+            - Total price is <= given_cap
+        6) Selected resource combinations are sorted based on price in asc order
+        7) Each resource is then formated as mentioned in the main documentation
+    '''
+
     def __init__(self, cpus, price, hours, resources):
         self.cpus = cpus
         self.hours = hours
