@@ -27,6 +27,7 @@ class CpuAndPriceBasedAllocator():
             self.cpus -= resources[start].cpus
             if(self.cpus <= 0 and self.price == 0):
                 self.output.append(self.compute_total_cost_cpus_server_count())
+                path_added = True
             elif(self.price < 0):
                 self.tmp_storage.pop()
                 self.cpus += resources[start].cpus
@@ -40,6 +41,7 @@ class CpuAndPriceBasedAllocator():
             self.cpus += resources[start].cpus
             self.tmp_storage.pop()
             start += 1
+        return path_added
 
     def calculate_sum_and_count(self, collector, resource):
         collector['total_cost'] += resource.price_per_hour
