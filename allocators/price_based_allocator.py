@@ -11,6 +11,7 @@ class PriceBasedAllocator():
 
     def __init__(self, price, hours, resources):
         self.hours = hours
+        # Price is divided by total no of given hours. As we are going to use price per hour in the algo
         self.price = price / float(self.hours)
         self.resources_dict = resources
         self.output = []
@@ -25,6 +26,7 @@ class PriceBasedAllocator():
 
     def preformat_output(self):
         for entry in self.output:
+            # We again multiply with total no of hours
             entry['total_cost'] = "$" + str(entry['total_cost'] * self.hours)
             entry['servers'] = entry['servers'].items()
 

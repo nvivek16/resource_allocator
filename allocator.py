@@ -6,10 +6,12 @@ import allocator_factory
 	2) Allocator factory chooses the correst request handler based on the given input params
 	3) Backtracking algorithm is used for allocating resources
 '''
-def get_costs(instances, hours, cpus, price):
+def get_costs(instances, hours, **options):
     # create resources and group based on region
     resources_dict = create_resources(instances)
-    return allocator_factory.get_allocator_based_on_input_params(cpus, price, hours, resources_dict).get_costs()
+    allocator = allocator_factory.get_allocator_based_on_input_params(hours, resources_dict, options)
+    if(allocator):
+    	return allocator.get_costs()
 
 def create_resources(instances):
     output = {}
