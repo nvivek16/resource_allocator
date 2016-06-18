@@ -16,7 +16,7 @@ class CpuAndPriceBasedAllocator():
     def __init__(self, cpus, price, hours, resources):
         self.cpus = cpus
         self.hours = hours
-        self.price = price / float(10)
+        self.price = price / float(self.hours)
         self.resources_dict = resources
         self.output = []
         self.tmp_storage = []
