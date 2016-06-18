@@ -23,7 +23,7 @@ class CpuBasedAllocator():
             self.tmp_storage.append(resources[start])
             self.cpus -= resources[start].cpus
             if(self.cpus <= 0):
-                self.append_in_asc_order_of_cost(self.compute_total_cost_server_count())
+                self.output.append(self.compute_total_cost_server_count())
             else:
                 self.rec_fun(resources, start, end)
             self.cpus += resources[start].cpus
@@ -40,13 +40,3 @@ class CpuBasedAllocator():
     def compute_total_cost_server_count(self):
         collector = {"total_cost": 0, "servers": {}, "region": self.tmp_storage[0].region}
         return reduce(self.calculate_sum_and_count, self.tmp_storage, collector)
-
-    def append_in_asc_order_of_cost(self, transformed_entry):
-        self.output.append(transformed_entry)
-        # length = len(self.output) - 1
-        # while(length  > 0):
-        #     if(self.output[length]['total_cost'] >= self.output[length - 1]['total_cost']):
-        #         break; 
-        #     if(self.output[length]['total_cost'] < self.output[length - 1]['total_cost']):
-        #         self.output[length], self.output[length - 1] = self.output[length - 1], self.output[length]
-        #     length -= 1
